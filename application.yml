@@ -5,8 +5,10 @@ server:
 lavalink:
   server:
     password: ${LAVALINK_PASSWORD}
-
     sources:
+      # Built-in Lavaplayer YouTube source stays OFF because you're using
+      # the dev.lavalink.youtube plugin below instead — do not turn this on,
+      # having both enabled causes conflicts.
       youtube: false
       bandcamp: false
       soundcloud: false
@@ -15,7 +17,6 @@ lavalink:
       nico: false
       http: false
       local: false
-
     bufferDurationMs: 400
     frameBufferDurationMs: 5000
     opusEncodingQuality: 10
@@ -32,12 +33,17 @@ youtube:
   allowSearch: true
   allowDirectVideoIds: true
   allowDirectPlaylistIds: true
-
   clients:
     - ANDROID_MUSIC
     - ANDROID_VR
     - WEB
     - WEB_EMBEDDED_PLAYER
+  # If searches ever start returning "No matches found" again AFTER you've
+  # confirmed the identifier being sent is correct (single "ytsearch:" or
+  # "ytmsearch:" prefix, visible in these logs), that's YouTube blocking the
+  # plugin's clients rather than a config or bot.py problem. At that point
+  # look into oauth or PoToken support for dev.lavalink.youtube — that is a
+  # separate, unrelated fix from what caused your current issue.
 
 logging:
   level:
