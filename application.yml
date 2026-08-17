@@ -23,22 +23,21 @@ lavalink:
     trackStuckThresholdMs: 10000
     useSeekGhosting: true
 
-  plugins:
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
-      snapshot: false
-
 plugins:
-  youtube:
-    enabled: true
-    allowSearch: true
-    allowDirectVideoIds: true
-    allowDirectPlaylistIds: true
+  - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
+    snapshot: false
 
-    clients:
-       - ANDROID_MUSIC
-       - ANDROID_VR
-       - WEB
-       - WEBEMBEDDED
+youtube:
+  enabled: true
+  allowSearch: true
+  allowDirectVideoIds: true
+  allowDirectPlaylistIds: true
+
+  clients:
+    - ANDROID_MUSIC
+    - ANDROID_VR
+    - WEB
+    - WEB_EMBEDDED_PLAYER
 
 logging:
   level:
