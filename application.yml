@@ -27,17 +27,15 @@ lavalink:
 plugins:
   - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
     snapshot: false
-
 youtube:
   enabled: true
   allowSearch: true
   allowDirectVideoIds: true
   allowDirectPlaylistIds: true
+
   clients:
-    - ANDROID_MUSIC
-    - ANDROID_VR
     - WEB
-    - WEB_EMBEDDED_PLAYER
+    - ANDROID_VR
   # If searches ever start returning "No matches found" again AFTER you've
   # confirmed the identifier being sent is correct (single "ytsearch:" or
   # "ytmsearch:" prefix, visible in these logs), that's YouTube blocking the
