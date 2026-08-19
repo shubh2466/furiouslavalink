@@ -4,6 +4,7 @@ server:
 
 lavalink:
   server:
+    password: "${LAVALINK_PASSWORD}"
     sources:
       youtube: false
 
