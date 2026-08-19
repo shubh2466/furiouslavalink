@@ -35,8 +35,11 @@ plugins:
 logging:
   level:
     root: INFO
-    lavalink: INFO
-    dev.lavalink.youtube: INFO
+    lavalink: DEBUG
+    lavalink.server.io.SocketContext: TRACE
+    dev.lavalink.youtube: DEBUG
+    moe.kyokobot.koe.internal.dave: TRACE
+    moe.kyokobot.koe.internal.gateway: TRACE
 
   request:
     enabled: true
