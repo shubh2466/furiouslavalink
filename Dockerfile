@@ -8,7 +8,7 @@ RUN apt-get update \
 
 RUN curl -fL \
     -o Lavalink.jar \
-    https://github.com/lavalink-devs/Lavalink/releases/download/4.0.7/Lavalink.jar
+    https://github.com/lavalink-devs/Lavalink/releases/download/4.2.2/Lavalink.jar
 
 COPY application.yml /app/application.yml
 
