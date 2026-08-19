@@ -4,29 +4,29 @@ server:
 
 lavalink:
   server:
-    password: "${LAVALINK_PASSWORD}"
     sources:
-      youtube: false   # handled by youtube-plugin instead
-      bandcamp: true
-      soundcloud: true
-      twitch: true
-      vimeo: true
-      http: true
-      local: false
-    bufferDurationMs: 400
-    frameBufferDurationMs: 5000
-    opusEncodingQuality: 10
-    resamplingQuality: LOW
-    trackStuckThresholdMs: 10000
-    useSeekGhosting: true
-    youtubePlaylistLoadLimit: 6
-    playerUpdateInterval: 5
-    youtubeSearchEnabled: true
-    soundcloudSearchEnabled: true
+      youtube: false
 
 lavalink.plugins:
   - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
     repository: "https://maven.lavalink.dev/releases"
+
+plugins:
+  youtube:
+    enabled: true
+    allowSearch: true
+    allowDirectVideoIds: true
+    allowDirectPlaylistIds: true
+
+    clients:
+      - WEB
+      - MWEB
+      - WEBEMBEDDED
+      - TV
+
+    oauth:
+      enabled: true
+      refreshToken: "${YOUTUBE_OAUTH_REFRESH_TOKEN}""
 
 plugins:
   youtube:
