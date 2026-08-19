@@ -28,10 +28,10 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
-      - ANDROID_VR
-      - ANDROID_MUSIC
+      - MUSIC
+      - MWEB
       - WEB
-      - WEBEMBEDDED
+      - ANDROID_MUSIC
 
 logging:
   level:
@@ -43,3 +43,4 @@ logging:
     includeClientInfo: true
     includeQueryString: true
     includePayload: true
+    maxPayloadLength: 10000
