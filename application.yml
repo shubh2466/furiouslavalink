@@ -35,9 +35,17 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     clients:
+      - MUSIC
       - ANDROID_VR
       - WEB
-      - WEB_EMBEDDED_PLAYER
+      - WEBEMBEDDED    # note: no underscore in current plugin versions
+      - TVHTML5EMBEDDED
+    oauth:
+      enabled: true
+      # leave refreshToken blank on first boot — Lavalink logs a
+      # one-time device-auth URL + code, you approve it in a browser,
+      # and it persists a refresh token afterward
+      refreshToken: ""
 
 metrics:
   prometheus:
