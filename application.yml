@@ -54,6 +54,8 @@ logging:
   level:
     root: INFO
     lavalink: INFO
+    com.sedmelluq.lavaplayer.core.natives.udpqueue: TRACE
+    com.sedmelluq.discord.koe: TRACE
   request:
     enabled: true
     includeHeaders: false
