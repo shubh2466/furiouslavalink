@@ -34,13 +34,13 @@ plugins:
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
-   clients:
-  - MUSIC
-  - TV
-  - MWEB
-  - ANDROID_VR
-  - WEB
-  - WEBEMBEDDED
+    clients:
+      - MUSIC
+      - TV
+      - MWEB
+      - ANDROID_VR
+      - WEB
+      - WEBEMBEDDED
     oauth:
       enabled: true
       refreshToken: "${YOUTUBE_OAUTH_REFRESH_TOKEN}"
@@ -56,8 +56,6 @@ logging:
   level:
     root: INFO
     lavalink: INFO
-    com.sedmelluq.lavaplayer.core.natives.udpqueue: TRACE
-    com.sedmelluq.discord.koe: TRACE
   request:
     enabled: true
     includeHeaders: false
