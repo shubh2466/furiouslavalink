@@ -24,15 +24,15 @@ plugins:
       - WEB
       - MWEB
       - WEBEMBEDDED
-      - ANDROID_VR
 
     oauth:
-      enabled: true
-      refreshToken: "${YOUTUBE_OAUTH_REFRESH_TOKEN}"
+      enabled: false
 
 metrics:
   prometheus:
     enabled: false
+
+sentry:
 
 sentry:
   dsn: ""
