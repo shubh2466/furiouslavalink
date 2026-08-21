@@ -32,7 +32,6 @@ metrics:
   prometheus:
     enabled: false
 
-sentry:
 
 sentry:
   dsn: ""
