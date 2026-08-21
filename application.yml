@@ -63,6 +63,21 @@ plugins:
       # blank/invalid you'll never see the login URL in the logs.
       skipInitialization: false
 
+    # As of mid-2026, YouTube's player script obfuscation broke the plugin's
+    # built-in (local) signature decipherer for many videos - you'll see
+    # "must find sig function" in logs and every client failing. This is a
+    # known, currently-open upstream issue, not something fixable via client
+    # order or OAuth. The maintainer-recommended workaround is to offload
+    # deciphering to yt-cipher (https://github.com/kikkia/yt-cipher).
+    #
+    # This points at the maintainer's free public instance to get you working
+    # immediately. It's rate-limited (10 req/sec) and uptime isn't guaranteed -
+    # for a production bot, self-host yt-cipher instead (see the repo's
+    # docker-compose) and point url at your own deployment.
+    remoteCipher:
+      url: "https://cipher.kikkia.dev/"
+      userAgent: "furious-music-bot"
+
 metrics:
   prometheus:
     enabled: false
