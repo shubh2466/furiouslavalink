@@ -25,9 +25,7 @@ plugins:
       - IOS
       - MWEB
       - WEB
-      - MUSIC
       - WEBEMBEDDED
-      - TV
 
     oauth:
       enabled: true
