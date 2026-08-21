@@ -6,11 +6,26 @@ lavalink:
   server:
     password: "${LAVALINK_PASSWORD}"
     sources:
+      # MUST be false - the youtube plugin below replaces this built-in source.
+      # Leaving this true will cause conflicts / it silently loses to the plugin.
       youtube: false
+      bandcamp: true
+      soundcloud: true
+      twitch: true
+      vimeo: true
+      http: true
+      local: false
+    # How many tracks a playlist load will return before stopping.
+    youtubePlaylistLoadLimit: 6
+    # Increase the buffer a bit - helps smooth over brief network hiccups on
+    # platforms like Railway where the outbound connection isn't always stable.
+    bufferDurationMs: 400
+    frameBufferDurationMs: 5000
 
-lavalink.plugins:
-  - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
-    repository: "https://maven.lavalink.dev/releases"
+  plugins:
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
+      repository: "https://maven.lavalink.dev/releases"
+      # snapshot: false   # only needed if you ever pin to a commit hash instead of a version
 
 plugins:
   youtube:
@@ -19,18 +34,34 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
+    # Order matters: clients are tried top-to-bottom until one succeeds.
+    # TV is placed first because it plays back reliably specifically *with*
+    # OAuth enabled (see table in the plugin README). The rest are fallbacks
+    # for when TV/OAuth has a hiccup.
     clients:
+      - TV
+      - WEB
+      - MWEB
       - ANDROID_VR
       - ANDROID_MUSIC
       - IOS
-      - MWEB
-      - WEB
       - WEBEMBEDDED
-      - TV
 
     oauth:
+      # Bare minimum to turn OAuth on.
       enabled: true
+
+      # Leave this EMPTY on first boot. Watch the container logs for a
+      # google.com/device URL + code, authorize it in a browser (ideally with
+      # a secondary/burner Google account, not your main one), then Lavalink
+      # will print a refresh token in the logs. Paste that exact value into
+      # the YOUTUBE_OAUTH_REFRESH_TOKEN env var and redeploy.
       refreshToken: "${YOUTUBE_OAUTH_REFRESH_TOKEN}"
+
+      # Do NOT set this to true unless you already have a working refreshToken
+      # above - true skips the device-login flow entirely, so if your token is
+      # blank/invalid you'll never see the login URL in the logs.
+      skipInitialization: false
 
 metrics:
   prometheus:
@@ -42,12 +73,14 @@ sentry:
 logging:
   level:
     root: INFO
-    lavalink: DEBUG
-    dev.lavalink.youtube: DEBUG
+    lavalink: INFO
+    dev.lavalink.youtube: INFO
+    # This specific logger is what prints the OAuth device-login URL/code and
+    # the refresh token after a successful authorization. Keep at INFO.
+    dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
     com.sedmelluq.discord.lavaplayer.tools.ExceptionTools: DEBUG
-    moe.kyokobot.koe.internal.gateway: TRACE
-    moe.kyokobot.koe.internal.dave: TRACE
-
+    moe.kyokobot.koe.internal.gateway: WARN
+    moe.kyokobot.koe.internal.dave: WARN
   request:
     enabled: true
     includeHeaders: false
