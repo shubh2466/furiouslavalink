@@ -42,8 +42,11 @@ sentry:
 logging:
   level:
     root: INFO
-    lavalink: INFO
-    dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
+    lavalink: DEBUG
+    dev.lavalink.youtube: DEBUG
+    com.sedmelluq.discord.lavaplayer.tools.ExceptionTools: DEBUG
+    moe.kyokobot.koe.internal.gateway: TRACE
+    moe.kyokobot.koe.internal.dave: TRACE
 
   request:
     enabled: true
