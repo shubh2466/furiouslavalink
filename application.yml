@@ -78,6 +78,17 @@ plugins:
       url: "https://cipher.kikkia.dev/"
       userAgent: "furious-music-bot"
 
+    # On cloud/datacenter IPs (Railway included), YouTube sometimes returns
+    # SABR-only responses with no direct playable URLs even when OAuth is
+    # valid - you'll see "No supported audio streams available" for WEB.
+    # A poToken unlocks direct format URLs again. Generate one with:
+    #   https://github.com/iv-org/youtube-trusted-session-generator
+    # (run the Docker image or Python script, it prints both values below),
+    # then paste them here. Regenerate every so often - these expire.
+    pot:
+      token: "${YOUTUBE_PO_TOKEN}"
+      visitorData: "${YOUTUBE_VISITOR_DATA}"
+
 metrics:
   prometheus:
     enabled: false
