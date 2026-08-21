@@ -26,6 +26,7 @@ plugins:
       - MWEB
       - WEB
       - WEBEMBEDDED
+      - TV
 
     oauth:
       enabled: true
